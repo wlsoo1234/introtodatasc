@@ -82,7 +82,8 @@ ui <- fluidPage(theme = shinytheme("united"),
                 mainPanel(
                   tags$label(h3('Status/Output')), # Status/Output Text Box
                   verbatimTextOutput('contents'),
-                  tableOutput('tabledata') # Prediction results table
+                  tableOutput('tabledata'), # Prediction results table
+                  verbatimTextOutput('final')
                   
                 )
 )
@@ -153,7 +154,12 @@ server<- function(input, output, session) {
     
     colnames(test) <- tolower(colnames(test))
     
-    Output <- data.frame(Prediction = predict(model0,test,type = "response"), round(predict(model0,test,type="response"), 3))
+    res <- predict(model0, test, type="response")
+    res
+    res <- predict(model0, train)
+    res
+    
+    Output <- res
     print(Output)
     
   })
