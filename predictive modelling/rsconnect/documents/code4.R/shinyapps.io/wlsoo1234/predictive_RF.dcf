@@ -1,0 +1,14 @@
+name: predictive_RF
+title: predictive_RF
+username:
+account: wlsoo1234
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8124587
+bundleId: 6773011
+url: https://wlsoo1234.shinyapps.io/predictive_RF/
+when: 1674657310.38306
+lastSyncTime: 1674657310.38306
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|code5.R|lr0.csv|LungCancer2.csv|LungCancer2LRAccuracy - Copy.R|LungCancer2LRAccuracy.R|LungCancer2RFAccuracy - Copy.R|LungCancer2RFAccuracy.R
