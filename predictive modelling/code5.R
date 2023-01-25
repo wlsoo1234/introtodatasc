@@ -1,11 +1,11 @@
 #Import libraries
-
-library(randomForest)
+{
 library(shiny)
 library(shinythemes)
 library(data.table)
 library(RCurl)
 library(caTools)
+}
 
 #Read data
 data <- read.csv("https://raw.githubusercontent.com/wlsoo1234/introtodatasc/main/predictive%20modelling/LungCancer2.csv",stringsAsFactors = FALSE)
@@ -34,15 +34,13 @@ data$lung_cancer <- as.factor(data$lung_cancer)
 }
 
 ##split data into training and testing
-samp <- sample.split(data$lung_cancer, SplitRatio = 0.80)
-
+samp <- sample.split(data, SplitRatio = 0.80)
 train <- subset(data, samp == TRUE)
 testdata<- subset(data, samp == FALSE)
-
 str(train)
 
-#Fitting a random forest model
-model0 <- randomForest(lung_cancer ~ ., data = train, ntree = 1000, mtry = 5,importance = TRUE)
+#Fitting a Logistic Regression model
+model0 <- glm(lung_cancer ~ ., data=train, family = "binomial")
 
 
 ####################################
@@ -56,7 +54,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                 
                 # Input values
                 sidebarPanel(
-                  HTML("<h3>Method: Random Forest</h3>"),
+                  HTML("<h3>Method: Logistic Regression</h3>"),
                   HTML("<h3>Input parameters</h3>"),
                   tags$h4("Input:"),
                   
@@ -155,8 +153,7 @@ server<- function(input, output, session) {
     
     colnames(test) <- tolower(colnames(test))
     
-    
-    Output <- data.frame(Prediction = predict(model0,test), round(predict(model0,test,type="prob"), 3))
+    Output <- data.frame(Prediction = predict(model0,test,type = "response"), round(predict(model0,test,type="response"), 3))
     print(Output)
     
   })
