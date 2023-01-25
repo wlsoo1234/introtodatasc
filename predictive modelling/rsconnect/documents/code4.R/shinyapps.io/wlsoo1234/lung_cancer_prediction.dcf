@@ -1,0 +1,14 @@
+name: lung_cancer_prediction
+title: lung_cancer_prediction
+username:
+account: wlsoo1234
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8122886
+bundleId: 6772151
+url: https://wlsoo1234.shinyapps.io/lung_cancer_prediction/
+when: 1674642074.26992
+lastSyncTime: 1674642074.26992
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: LungCancer2.csv|LungCancer2LRAccuracy.R|LungCancer2RFAccuracy.R

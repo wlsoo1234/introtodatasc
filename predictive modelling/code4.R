@@ -1,5 +1,4 @@
 #Import libraries
-data <- read.csv("C:\\Users\\soowe\\OneDrive\\Documents\\GitHub\\introtodatasc\\predictive modelling\\LungCancer2.csv")
 
 library(ggplot2)
 library(cowplot)
