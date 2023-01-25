@@ -252,14 +252,18 @@ server<- function(input, output, session) {
   output$tabledata1 <- renderTable({
     if (input$submitbutton>0) { 
       isolate(datasetInput1()) 
-    } 
+    } else{
+      return("No data input / submitted")
+    }
   })
   
   # LR Prediction results table
   output$tabledata2 <- renderTable({
     if (input$submitbutton>0) { 
       isolate(datasetInput2()) 
-    } 
+    } else{
+      return("No data input / submitted")
+    }
   })
   
 }
