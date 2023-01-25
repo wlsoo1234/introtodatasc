@@ -15,7 +15,7 @@
 
 library(caTools)
 
-data <- read.csv("C:\\Users\\USER\\Desktop\\LungCancer\\LungCancer2.csv")
+data <- read.csv("C:\\Users\\soowe\\OneDrive\\Documents\\GitHub\\introtodatasc\\predictive modelling\\LungCancer2.csv")
 
 head(data)
 str(data)    # 1= no, 2=yes
