@@ -40,7 +40,7 @@ testdata<- subset(data, samp == FALSE)
 str(train)
 
 #Fitting a Logistic Regression model
-model0 <- glm(lung_cancer ~ ., data=train, family = "binomial")
+model0 <- glm(lung_cancer ~ ., data=data, family = "binomial")
 
 
 ####################################
@@ -69,12 +69,12 @@ ui <- fluidPage(theme = shinytheme("united"),
                   radioButtons("CHRONIC.DISEASE", label = "Chronic Disease?", choices = c("Yes","No")),
                   radioButtons("FATIGUE", label = "Often feeling tired? (Fatigue)", choices = c("Yes","No")),
                   radioButtons("ALLERGY", label = "Facing allergy?", choices = c("Yes","No"),selected = "No"),
-                  radioButtons("WHEEZING", label = "Wheezing?", choices = c("Yes","No"),selected = "No"),
-                  radioButtons("ALCOHOL.CONSUMING", label = "Often drinking alcohol?", choices = c("Yes","No")),
-                  radioButtons("COUGHING", label = "Coughing?", choices = c("Yes","No")),
+                  radioButtons("WHEEZING", label = "Wheezing?", choices = c("Yes","No"),selected = "Yes"),
+                  radioButtons("ALCOHOL.CONSUMING", label = "Often drinking alcohol?", choices = c("Yes","No"),selected = "No"),
+                  radioButtons("COUGHING", label = "Coughing?", choices = c("Yes","No"),selected = "No"),
                   radioButtons("SHORTNESS.OF.BREATH", label = "Hard to breath?", choices = c("Yes","No"),selected = "No"),
-                  radioButtons("SWALLOWING.DIFFICULTY", label = "Hard to swallow?", choices = c("Yes","No")),
-                  radioButtons("CHEST.PAIN", label = "Chest Pain?", choices = c("Yes" ,"No"),selected = "No"),
+                  radioButtons("SWALLOWING.DIFFICULTY", label = "Hard to swallow?", choices = c("Yes","No"),selected = "No"),
+                  radioButtons("CHEST.PAIN", label = "Chest Pain?", choices = c("Yes" ,"No"),selected = "Yes"),
                   
                   actionButton("submitbutton", "Submit", class = "btn btn-primary")
                 ),
@@ -122,10 +122,10 @@ server<- function(input, output, session) {
     df<- rbind(df, lung_cancer)
     input <- transpose(df)
     
-    write.table(input,"rf0.csv", sep=",",
+    write.table(input,"lr0.csv", sep=",",
                 quote = FALSE, row.names = FALSE, col.names = FALSE)
     
-    test <- read.csv(paste("rf0", ".csv", sep=""),header = TRUE)
+    test <- read.csv(paste("lr0", ".csv", sep=""),header = TRUE)
     
     if(test$GENDER == F){
       test$GENDER <- "F"
@@ -156,10 +156,14 @@ server<- function(input, output, session) {
     
     res <- predict(model0, test, type="response")
     res
-    res <- predict(model0, train)
-    res
     
-    Output <- res
+    if(res>0.5){
+      kena = "Cancer Positive"
+    }else{
+      kena = "Cancer Negative"
+    }
+    
+    Output <- data.frame(Prediction = kena, Probability = res)
     print(Output)
     
   })

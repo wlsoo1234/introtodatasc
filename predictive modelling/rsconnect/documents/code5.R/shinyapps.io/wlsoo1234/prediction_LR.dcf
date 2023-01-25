@@ -1,0 +1,14 @@
+name: prediction_LR
+title: prediction_LR
+username:
+account: wlsoo1234
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8124537
+bundleId: 6772990
+url: https://wlsoo1234.shinyapps.io/prediction_LR/
+when: 1674657006.09484
+lastSyncTime: 1674657006.09484
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|code4.R|LungCancer2.csv|LungCancer2LRAccuracy - Copy.R|LungCancer2LRAccuracy.R|LungCancer2RFAccuracy - Copy.R|LungCancer2RFAccuracy.R|rf0.csv
